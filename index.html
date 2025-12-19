@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -278,321 +279,323 @@
         <div style="font-size: 0.9rem; margin-top: 5px; color: #2C1A4D;">Your Elite Training Hub, Queen!</div>
     </div>
 
-    <div class="tabs">
-        <div class="tab active" onclick="showTab('log')">📝 Log</div>
-        <div class="tab" onclick="showTab('history')">📅 History</div>
-        <div class="tab" onclick="showTab('pr')">🏆 PR Board</div>
-        <div class="tab" onclick="showTab('chat')">💬 Coach</div>
+```
+<div class="tabs">
+    <div class="tab active" onclick="showTab('log')">📝 Log</div>
+    <div class="tab" onclick="showTab('history')">📅 History</div>
+    <div class="tab" onclick="showTab('pr')">🏆 PR Board</div>
+    <div class="tab" onclick="showTab('chat')">💬 Coach</div>
+</div>
+
+<div class="content">
+    <div id="log-tab" class="tab-content">
+        <div class="card">
+            <h2>🎯 What's the vibe today?</h2>
+            <div class="activity-selector">
+                <div class="activity-btn" onclick="selectActivity('spin')">🚴 Spin</div>
+                <div class="activity-btn" onclick="selectActivity('bodypump')">🏋️ Bodypump</div>
+                <div class="activity-btn" onclick="selectActivity('pilates')">🧘 Mat Pilates</div>
+                <div class="activity-btn" onclick="selectActivity('yoga')">🌸 Yin Yoga</div>
+            </div>
+        </div>
+
+        <div id="spin-form" class="card hidden">
+            <h2>🚴 Spin Session</h2>
+            <label>Time (minutes)</label>
+            <input type="number" id="spin-time" placeholder="60">
+            
+            <label>FTP (Functional Threshold Power)</label>
+            <div class="grid-2">
+                <input type="number" id="spin-ftp-avg" placeholder="Average">
+                <input type="number" id="spin-ftp-max" placeholder="Max">
+            </div>
+
+            <label>Watts</label>
+            <div class="grid-2">
+                <input type="number" id="spin-watt-avg" placeholder="Average">
+                <input type="number" id="spin-watt-max" placeholder="Max">
+            </div>
+
+            <label>BPM (Heart Rate)</label>
+            <div class="grid-2">
+                <input type="number" id="spin-bpm-avg" placeholder="Average">
+                <input type="number" id="spin-bpm-max" placeholder="Max">
+            </div>
+
+            <label>RPM (Cadence)</label>
+            <div class="grid-2">
+                <input type="number" id="spin-rpm-avg" placeholder="Average">
+                <input type="number" id="spin-rpm-max" placeholder="Max">
+            </div>
+
+            <label>Speed (km/hr)</label>
+            <div class="grid-2">
+                <input type="number" id="spin-kmh-avg" placeholder="Average">
+                <input type="number" id="spin-kmh-max" placeholder="Max">
+            </div>
+
+            <label>Distance (km)</label>
+            <input type="number" id="spin-km" placeholder="30">
+
+            <label>Calories</label>
+            <input type="number" id="spin-cal" placeholder="500">
+
+            <label>TSS (Training Stress Score)</label>
+            <input type="number" id="spin-tss" placeholder="75">
+
+            <label>Effort Zones</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="spin-intense"> Intense</label>
+                <label class="checkbox-item"><input type="checkbox" id="spin-aerobic"> Aerobic</label>
+                <label class="checkbox-item"><input type="checkbox" id="spin-anaerobic"> Anaerobic</label>
+                <label class="checkbox-item"><input type="checkbox" id="spin-vo2"> VO2 Max</label>
+            </div>
+
+            <label>Extra Notes</label>
+            <textarea id="spin-notes" rows="3" placeholder="How did it feel, Queen?"></textarea>
+
+            <button class="btn btn-primary" onclick="saveWorkout()">💾 Save Workout</button>
+        </div>
+
+        <div id="bodypump-form" class="card hidden">
+            <h2>🏋️ Bodypump Session</h2>
+            <label>Time (minutes)</label>
+            <input type="number" id="bp-time" placeholder="60">
+
+            <label>BPM (Heart Rate)</label>
+            <div class="grid-2">
+                <input type="number" id="bp-bpm-avg" placeholder="Average">
+                <input type="number" id="bp-bpm-max" placeholder="Max">
+            </div>
+
+            <h3 style="margin-top: 20px; color: #8B5FBF;">Track Breakdown</h3>
+            
+            <label>Warmup</label>
+            <input type="text" id="bp-warmup" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-warmup-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-warmup-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-warmup-body"> Bodyweight</label>
+            </div>
+
+            <label>Squats</label>
+            <input type="text" id="bp-squats" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-squats-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-squats-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-squats-body"> Bodyweight</label>
+            </div>
+
+            <label>Back</label>
+            <input type="text" id="bp-back" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-back-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-back-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-back-body"> Bodyweight</label>
+            </div>
+
+            <label>Chest</label>
+            <input type="text" id="bp-chest" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-chest-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-chest-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-chest-body"> Bodyweight</label>
+            </div>
+
+            <label>Triceps</label>
+            <input type="text" id="bp-triceps" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-triceps-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-triceps-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-triceps-body"> Bodyweight</label>
+            </div>
+
+            <label>Biceps</label>
+            <input type="text" id="bp-biceps" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-biceps-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-biceps-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-biceps-body"> Bodyweight</label>
+            </div>
+
+            <label>Lunges</label>
+            <input type="text" id="bp-lunges" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-lunges-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-lunges-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-lunges-body"> Bodyweight</label>
+            </div>
+
+            <label>Shoulders</label>
+            <input type="text" id="bp-shoulders" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-shoulders-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-shoulders-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-shoulders-body"> Bodyweight</label>
+            </div>
+
+            <label>Abs</label>
+            <input type="text" id="bp-abs" placeholder="Weight/reps">
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-abs-bar"> Bar</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-abs-loose"> Loose</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-abs-body"> Bodyweight</label>
+            </div>
+
+            <label>Effort Zones</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" id="bp-intense"> Intense</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-aerobic"> Aerobic</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-anaerobic"> Anaerobic</label>
+                <label class="checkbox-item"><input type="checkbox" id="bp-vo2"> VO2 Max</label>
+            </div>
+
+            <label>Extra Notes</label>
+            <textarea id="bp-notes" rows="3" placeholder="How was the pump, Diva?"></textarea>
+
+            <button class="btn btn-primary" onclick="saveWorkout()">💾 Save Workout</button>
+        </div>
+
+        <div id="pilates-form" class="card hidden">
+            <h2>🧘 Mat Pilates Session</h2>
+            <label>Time (minutes)</label>
+            <input type="number" id="pilates-time" placeholder="45">
+
+            <label>BPM (Heart Rate)</label>
+            <div class="grid-2">
+                <input type="number" id="pilates-bpm-avg" placeholder="Average">
+                <input type="number" id="pilates-bpm-max" placeholder="Max">
+            </div>
+
+            <label>Extra Notes</label>
+            <textarea id="pilates-notes" rows="3" placeholder="How did you feel, Queen?"></textarea>
+
+            <button class="btn btn-primary" onclick="saveWorkout()">💾 Save Workout</button>
+        </div>
+
+        <div id="yoga-form" class="card hidden">
+            <h2>🌸 Yin Yoga Session</h2>
+            <label>Time (minutes)</label>
+            <input type="number" id="yoga-time" placeholder="60">
+
+            <label>BPM (Heart Rate)</label>
+            <div class="grid-2">
+                <input type="number" id="yoga-bpm-avg" placeholder="Average">
+                <input type="number" id="yoga-bpm-max" placeholder="Max">
+            </div>
+
+            <label>Extra Notes</label>
+            <textarea id="yoga-notes" rows="3" placeholder="How zen are you feeling, Bestie?"></textarea>
+
+            <button class="btn btn-primary" onclick="saveWorkout()">💾 Save Workout</button>
+        </div>
     </div>
 
-    <div class="content">
-        <div id="log-tab" class="tab-content">
-            <div class="card">
-                <h2>🎯 What's the vibe today?</h2>
-                <div class="activity-selector">
-                    <div class="activity-btn" onclick="selectActivity('spin')">🚴 Spin</div>
-                    <div class="activity-btn" onclick="selectActivity('bodypump')">🏋️ Bodypump</div>
-                    <div class="activity-btn" onclick="selectActivity('pilates')">🧘 Mat Pilates</div>
-                    <div class="activity-btn" onclick="selectActivity('yoga')">🌸 Yin Yoga</div>
-                </div>
-            </div>
-
-            <div id="spin-form" class="card hidden">
-                <h2>🚴 Spin Session</h2>
-                <label>Time (minutes)</label>
-                <input type="number" id="spin-time" placeholder="60">
-                
-                <label>FTP (Functional Threshold Power)</label>
-                <div class="grid-2">
-                    <input type="number" id="spin-ftp-avg" placeholder="Average">
-                    <input type="number" id="spin-ftp-max" placeholder="Max">
-                </div>
-
-                <label>Watts</label>
-                <div class="grid-2">
-                    <input type="number" id="spin-watt-avg" placeholder="Average">
-                    <input type="number" id="spin-watt-max" placeholder="Max">
-                </div>
-
-                <label>BPM (Heart Rate)</label>
-                <div class="grid-2">
-                    <input type="number" id="spin-bpm-avg" placeholder="Average">
-                    <input type="number" id="spin-bpm-max" placeholder="Max">
-                </div>
-
-                <label>RPM (Cadence)</label>
-                <div class="grid-2">
-                    <input type="number" id="spin-rpm-avg" placeholder="Average">
-                    <input type="number" id="spin-rpm-max" placeholder="Max">
-                </div>
-
-                <label>Speed (km/hr)</label>
-                <div class="grid-2">
-                    <input type="number" id="spin-kmh-avg" placeholder="Average">
-                    <input type="number" id="spin-kmh-max" placeholder="Max">
-                </div>
-
-                <label>Distance (km)</label>
-                <input type="number" id="spin-km" placeholder="30">
-
-                <label>Calories</label>
-                <input type="number" id="spin-cal" placeholder="500">
-
-                <label>TSS (Training Stress Score)</label>
-                <input type="number" id="spin-tss" placeholder="75">
-
-                <label>Effort Zones</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="spin-intense"> Intense</label>
-                    <label class="checkbox-item"><input type="checkbox" id="spin-aerobic"> Aerobic</label>
-                    <label class="checkbox-item"><input type="checkbox" id="spin-anaerobic"> Anaerobic</label>
-                    <label class="checkbox-item"><input type="checkbox" id="spin-vo2"> VO2 Max</label>
-                </div>
-
-                <label>Extra Notes</label>
-                <textarea id="spin-notes" rows="3" placeholder="How did it feel, Queen?"></textarea>
-
-                <button class="btn btn-primary" onclick="saveWorkout()">💾 Save Workout</button>
-            </div>
-
-            <div id="bodypump-form" class="card hidden">
-                <h2>🏋️ Bodypump Session</h2>
-                <label>Time (minutes)</label>
-                <input type="number" id="bp-time" placeholder="60">
-
-                <label>BPM (Heart Rate)</label>
-                <div class="grid-2">
-                    <input type="number" id="bp-bpm-avg" placeholder="Average">
-                    <input type="number" id="bp-bpm-max" placeholder="Max">
-                </div>
-
-                <h3 style="margin-top: 20px; color: #8B5FBF;">Track Breakdown</h3>
-                
-                <label>Warmup</label>
-                <input type="text" id="bp-warmup" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-warmup-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-warmup-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-warmup-body"> Bodyweight</label>
-                </div>
-
-                <label>Squats</label>
-                <input type="text" id="bp-squats" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-squats-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-squats-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-squats-body"> Bodyweight</label>
-                </div>
-
-                <label>Back</label>
-                <input type="text" id="bp-back" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-back-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-back-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-back-body"> Bodyweight</label>
-                </div>
-
-                <label>Chest</label>
-                <input type="text" id="bp-chest" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-chest-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-chest-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-chest-body"> Bodyweight</label>
-                </div>
-
-                <label>Triceps</label>
-                <input type="text" id="bp-triceps" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-triceps-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-triceps-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-triceps-body"> Bodyweight</label>
-                </div>
-
-                <label>Biceps</label>
-                <input type="text" id="bp-biceps" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-biceps-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-biceps-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-biceps-body"> Bodyweight</label>
-                </div>
-
-                <label>Lunges</label>
-                <input type="text" id="bp-lunges" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-lunges-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-lunges-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-lunges-body"> Bodyweight</label>
-                </div>
-
-                <label>Shoulders</label>
-                <input type="text" id="bp-shoulders" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-shoulders-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-shoulders-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-shoulders-body"> Bodyweight</label>
-                </div>
-
-                <label>Abs</label>
-                <input type="text" id="bp-abs" placeholder="Weight/reps">
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-abs-bar"> Bar</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-abs-loose"> Loose</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-abs-body"> Bodyweight</label>
-                </div>
-
-                <label>Effort Zones</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" id="bp-intense"> Intense</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-aerobic"> Aerobic</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-anaerobic"> Anaerobic</label>
-                    <label class="checkbox-item"><input type="checkbox" id="bp-vo2"> VO2 Max</label>
-                </div>
-
-                <label>Extra Notes</label>
-                <textarea id="bp-notes" rows="3" placeholder="How was the pump, Diva?"></textarea>
-
-                <button class="btn btn-primary" onclick="saveWorkout()">💾 Save Workout</button>
-            </div>
-
-            <div id="pilates-form" class="card hidden">
-                <h2>🧘 Mat Pilates Session</h2>
-                <label>Time (minutes)</label>
-                <input type="number" id="pilates-time" placeholder="45">
-
-                <label>BPM (Heart Rate)</label>
-                <div class="grid-2">
-                    <input type="number" id="pilates-bpm-avg" placeholder="Average">
-                    <input type="number" id="pilates-bpm-max" placeholder="Max">
-                </div>
-
-                <label>Extra Notes</label>
-                <textarea id="pilates-notes" rows="3" placeholder="How did you feel, Queen?"></textarea>
-
-                <button class="btn btn-primary" onclick="saveWorkout()">💾 Save Workout</button>
-            </div>
-
-            <div id="yoga-form" class="card hidden">
-                <h2>🌸 Yin Yoga Session</h2>
-                <label>Time (minutes)</label>
-                <input type="number" id="yoga-time" placeholder="60">
-
-                <label>BPM (Heart Rate)</label>
-                <div class="grid-2">
-                    <input type="number" id="yoga-bpm-avg" placeholder="Average">
-                    <input type="number" id="yoga-bpm-max" placeholder="Max">
-                </div>
-
-                <label>Extra Notes</label>
-                <textarea id="yoga-notes" rows="3" placeholder="How zen are you feeling, Bestie?"></textarea>
-
-                <button class="btn btn-primary" onclick="saveWorkout()">💾 Save Workout</button>
-            </div>
+    <div id="history-tab" class="tab-content hidden">
+        <div class="card">
+            <h2>📅 Your Training History</h2>
+            <div class="history-list" id="history-list"></div>
         </div>
+    </div>
 
-        <div id="history-tab" class="tab-content hidden">
-            <div class="card">
-                <h2>📅 Your Training History</h2>
-                <div class="history-list" id="history-list"></div>
-            </div>
-        </div>
-
-        <div id="pr-tab" class="tab-content hidden">
-            <div class="card">
-                <h2>🏆 Personal Records - Spin</h2>
-                <div class="pr-grid">
-                    <div class="pr-card"><div class="pr-label">FTP Max</div><div class="pr-value" id="pr-ftp-max">--</div></div>
-                    <div class="pr-card"><div class="pr-label">Watt Avg</div><div class="pr-value" id="pr-watt-avg">--</div></div>
-                    <div class="pr-card"><div class="pr-label">Watt Max</div><div class="pr-value" id="pr-watt-max">--</div></div>
-                    <div class="pr-card"><div class="pr-label">RPM Avg</div><div class="pr-value" id="pr-rpm-avg">--</div></div>
-                    <div class="pr-card"><div class="pr-label">RPM Max</div><div class="pr-value" id="pr-rpm-max">--</div></div>
-                    <div class="pr-card"><div class="pr-label">Km/h Avg</div><div class="pr-value" id="pr-kmh-avg">--</div></div>
-                    <div class="pr-card"><div class="pr-label">Km/h Max</div><div class="pr-value" id="pr-kmh-max">--</div></div>
-                    <div class="pr-card"><div class="pr-label">Distance</div><div class="pr-value" id="pr-km">--</div></div>
-                    <div class="pr-card"><div class="pr-label">Calories</div><div class="pr-value" id="pr-cal">--</div></div>
-                    <div class="pr-card"><div class="pr-label">TSS</div><div class="pr-value" id="pr-tss">--</div></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="chat-tab" class="tab-content hidden">
-            <div class="card">
-                <h2>💬 Chat with Coach Girlie</h2>
-                <label>Your Anthropic API Key</label>
-                <input type="password" id="api-key" placeholder="sk-ant-...">
-                <button class="btn btn-secondary" onclick="saveApiKey()">🔑 Save Key</button>
-            </div>
-            <div class="chat-container" id="chat-messages"></div>
-            <div class="card">
-                <div class="chat-input-group">
-                    <input type="text" id="chat-input" placeholder="Ask Coach Girlie anything, Bestie!" onkeypress="if(event.key==='Enter') sendMessage()">
-                    <button class="btn btn-primary" onclick="sendMessage()">Send</button>
-                </div>
+    <div id="pr-tab" class="tab-content hidden">
+        <div class="card">
+            <h2>🏆 Personal Records - Spin</h2>
+            <div class="pr-grid">
+                <div class="pr-card"><div class="pr-label">FTP Max</div><div class="pr-value" id="pr-ftp-max">--</div></div>
+                <div class="pr-card"><div class="pr-label">Watt Avg</div><div class="pr-value" id="pr-watt-avg">--</div></div>
+                <div class="pr-card"><div class="pr-label">Watt Max</div><div class="pr-value" id="pr-watt-max">--</div></div>
+                <div class="pr-card"><div class="pr-label">RPM Avg</div><div class="pr-value" id="pr-rpm-avg">--</div></div>
+                <div class="pr-card"><div class="pr-label">RPM Max</div><div class="pr-value" id="pr-rpm-max">--</div></div>
+                <div class="pr-card"><div class="pr-label">Km/h Avg</div><div class="pr-value" id="pr-kmh-avg">--</div></div>
+                <div class="pr-card"><div class="pr-label">Km/h Max</div><div class="pr-value" id="pr-kmh-max">--</div></div>
+                <div class="pr-card"><div class="pr-label">Distance</div><div class="pr-value" id="pr-km">--</div></div>
+                <div class="pr-card"><div class="pr-label">Calories</div><div class="pr-value" id="pr-cal">--</div></div>
+                <div class="pr-card"><div class="pr-label">TSS</div><div class="pr-value" id="pr-tss">--</div></div>
             </div>
         </div>
     </div>
 
-    <script>
-        let workouts = JSON.parse(localStorage.getItem('workouts') || '[]');
-        let apiKey = localStorage.getItem('apiKey') || '';
-        let chatHistory = JSON.parse(localStorage.getItem('chatHistory') || '[]');
-        let currentActivity = null;
+    <div id="chat-tab" class="tab-content hidden">
+        <div class="card">
+            <h2>💬 Chat with Coach Girlie</h2>
+            <label>Your Anthropic API Key</label>
+            <input type="password" id="api-key" placeholder="sk-ant-...">
+            <button class="btn btn-secondary" onclick="saveApiKey()">🔑 Save Key</button>
+        </div>
+        <div class="chat-container" id="chat-messages"></div>
+        <div class="card">
+            <div class="chat-input-group">
+                <input type="text" id="chat-input" placeholder="Ask Coach Girlie anything, Bestie!" onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-        if (apiKey) document.getElementById('api-key').value = apiKey;
+<script>
+    let workouts = JSON.parse(localStorage.getItem('workouts') || '[]');
+    let apiKey = localStorage.getItem('apiKey') || '';
+    let chatHistory = JSON.parse(localStorage.getItem('chatHistory') || '[]');
+    let currentActivity = null;
 
-        function showTab(tabName) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-            event.target.classList.add('active');
-            document.getElementById(tabName + '-tab').classList.remove('hidden');
-            if (tabName === 'history') loadHistory();
-            if (tabName === 'pr') updatePRBoard();
-            if (tabName === 'chat') loadChat();
+    if (apiKey) document.getElementById('api-key').value = apiKey;
+
+    function showTab(tabName) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+        event.target.classList.add('active');
+        document.getElementById(tabName + '-tab').classList.remove('hidden');
+        if (tabName === 'history') loadHistory();
+        if (tabName === 'pr') updatePRBoard();
+        if (tabName === 'chat') loadChat();
+    }
+
+    function selectActivity(activity) {
+        currentActivity = activity;
+        document.querySelectorAll('.activity-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        document.querySelectorAll('[id$="-form"]').forEach(f => f.classList.add('hidden'));
+        document.getElementById(activity + '-form').classList.remove('hidden');
+    }
+
+    function saveWorkout() {
+        if (!currentActivity) {
+            alert('Please select an activity first, Bestie!');
+            return;
         }
-
-        function selectActivity(activity) {
-            currentActivity = activity;
-            document.querySelectorAll('.activity-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            document.querySelectorAll('[id$="-form"]').forEach(f => f.classList.add('hidden'));
-            document.getElementById(activity + '-form').classList.remove('hidden');
-        }
-
-        function saveWorkout() {
-            if (!currentActivity) {
-                alert('Please select an activity first, Bestie!');
-                return;
-            }
-            const workout = { id: Date.now(), date: new Date().toISOString(), type: currentActivity, data: {} };
-            if (currentActivity === 'spin') {
-                workout.data = {
-                    time: document.getElementById('spin-time').value,
-                    ftpAvg: document.getElementById('spin-ftp-avg').value,
-                    ftpMax: document.getElementById('spin-ftp-max').value,
-                    wattAvg: document.getElementById('spin-watt-avg').value,
-                    wattMax: document.getElementById('spin-watt-max').value,
-                    bpmAvg: document.getElementById('spin-bpm-avg').value,
-                    bpmMax: document.getElementById('spin-bpm-max').value,
-                    rpmAvg: document.getElementById('spin-rpm-avg').value,
-                    rpmMax: document.getElementById('spin-rpm-max').value,
-                    kmhAvg: document.getElementById('spin-kmh-avg').value,
-                    kmhMax: document.getElementById('spin-kmh-max').value,
-                    km: document.getElementById('spin-km').value,
-                    cal: document.getElementById('spin-cal').value,
-                    tss: document.getElementById('spin-tss').value,
-                    intense: document.getElementById('spin-intense').checked,
-                    aerobic: document.getElementById('spin-aerobic').checked,
-                    anaerobic: document.getElementById('spin-anaerobic').checked,
-                    vo2: document.getElementById('spin-vo2').checked,
-                    notes: document.getElementById('spin-notes').value
-                };
-            } else if (currentActivity === 'bodypump') {
-                const tracks = ['warmup', 'squats', 'back', 'chest', 'triceps', 'biceps', 'lunges', 'shoulders', 'abs'];
-                workout.data = {
-                    time: document.getElementById('bp-time').value,
-                    bpmAvg: document.getElementById('bp-bpm-avg').value,
-                    bpmMax: document.getElementById('bp-bpm-max').value,
-                    tracks: {},
-                    intense: document.getElementById('bp-intense').checked,
-                    aerobic: document.getElementById('bp-aerobic').checked,
-                    anaerobic: document.getElementById('bp-anaerobic').checked,
-                    vo2: document.getElementById('bp-vo2').checked,
+        const workout = { id: Date.now(), date: new Date().toISOString(), type: currentActivity, data: {} };
+        if (currentActivity === 'spin') {
+            workout.data = {
+                time: document.getElementById('spin-time').value,
+                ftpAvg: document.getElementById('spin-ftp-avg').value,
+                ftpMax: document.getElementById('spin-ftp-max').value,
+                wattAvg: document.getElementById('spin-watt-avg').value,
+                wattMax: document.getElementById('spin-watt-max').value,
+                bpmAvg: document.getElementById('spin-bpm-avg').value,
+                bpmMax: document.getElementById('spin-bpm-max').value,
+                rpmAvg: document.getElementById('spin-rpm-avg').value,
+                rpmMax: document.getElementById('spin-rpm-max').value,
+                kmhAvg: document.getElementById('spin-kmh-avg').value,
+                kmhMax: document.getElementById('spin-kmh-max').value,
+                km: document.getElementById('spin-km').value,
+                cal: document.getElementById('spin-cal').value,
+                tss: document.getElementById('spin-tss').value,
+                intense: document.getElementById('spin-intense').checked,
+                aerobic: document.getElementById('spin-aerobic').checked,
+                anaerobic: document.getElementById('spin-anaerobic').checked,
+                vo2: document.getElementById('spin-vo2').checked,
+                notes: document.getElementById('spin-notes').value
+            };
+        } else if (currentActivity === 'bodypump') {
+            const tracks = ['warmup', 'squats', 'back', 'chest', 'triceps', 'biceps', 'lunges', 'shoulders', 'abs'];
+            workout.data = {
+                time: document.getElementById('bp-time').value,
+                bpmAvg: document.getElementById('bp-bpm-avg').value,
+                bpmMax: document.getElementById('bp-bpm-max').value,
+                tracks: {},
+                intense: document.getElementById('bp-intense').checked,
+                aerobic: document.getElementById('bp-aerobic').checked,
+                anaerobic: document.getElementById('bp-anaerobic').checked,
+                vo2: document.getElementById('bp-vo2').checked,
+```
